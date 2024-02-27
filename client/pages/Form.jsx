@@ -1,6 +1,6 @@
-
 // pages/form.js
 import React, { useState } from 'react';
+import '../src/index.css';
 
 const FormPage = () => {
   const [selectedGender, setSelectedGender] = useState('');
