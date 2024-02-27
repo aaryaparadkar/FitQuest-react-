@@ -4,6 +4,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import { userAuth } from './api/auth.js';
 import { Generate_Workout_Plan } from './api/Generate_Workout_Plan.js';
+import { xyz } from './api/gemini.js';
 
 const app = express();
 
@@ -27,6 +28,6 @@ app.post('/', ( req, res ) => {
 
 app.use('/generateWorkoutPlan', Generate_Workout_Plan);
 
-app.use("/auth",userAuth);
+app.use("/auth",userAuth,xyz);
 
 app.listen(5000,() => console.log('Server started'));
