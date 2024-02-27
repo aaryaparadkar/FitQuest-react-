@@ -30,23 +30,33 @@ const FormPage = () => {
   // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission logic here
-    console.log('Selected Gender:', gender);
-    console.log('Selected Frequency:', frequency);
-    console.log('Is New to Lifting:', status);
-    console.log('Selected Goal:', goal);
+
+    const data = {username,gender,frequency,status,goal};
+
+    axios.post('http://localhost:5000/user/profile', data)
+    .then(response => {
+      console.log(response);
+      setGender('');
+      setFrequency('');
+      setGoal('');
+      setStatus('');
+      localStorage.setItem('username', response.data.username); 
+    })
+    .catch(error => {
+      console.log(error);
+    });
   };
 
   return (
-    <div className="bg-slate-800 min-h-screen flex items-center justify-center">
-      <form className="max-w-xl p-6 bg-slate-700 shadow-md rounded-lg" onSubmit={handleSubmit}>
-        <h2 className="text-3xl font-bold mb-6 text-white text-center">User Information</h2>
+    <div className="bg-white min-h-screen flex items-center justify-center">
+      <form className="max-w-xl p-6 shadow-md rounded-lg" onSubmit={handleSubmit}>
+        <h2 className="text-3xl font-bold mb-6 text-center">User Information</h2>
 
         {/* Gender Selection */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-white mb-2">Select your gender:</label>
+          <label className="block text-sm font-medium  mb-2">Select your gender:</label>
           <div className="flex items-center space-x-4">
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -58,7 +68,7 @@ const FormPage = () => {
               <span className="ml-2">Male</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -67,10 +77,10 @@ const FormPage = () => {
                 checked={gender === 'female'}
                 onChange={handleGenderChange}
               />
-              <span className="ml-2 text-white">Female</span>
+              <span className="ml-2 ">Female</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -79,16 +89,16 @@ const FormPage = () => {
                 checked={gender === 'other'}
                 onChange={handleGenderChange}
               />
-              <span className="ml-2 text-white">Other</span>
+              <span className="ml-2 ">Other</span>
             </label>
           </div>
         </div>
 
         {/* Workout Frequency */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-white mb-2">How often would you like to workout?</label>
+          <label className="block text-sm font-medium  mb-2">How often would you like to workout?</label>
           <div className="flex items-center space-x-4">
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -97,10 +107,10 @@ const FormPage = () => {
                 checked={frequency === '2x per week'}
                 onChange={handleFrequencyChange}
               />
-              <span className="ml-2 text-white">2x per week</span>
+              <span className="ml-2 ">2x per week</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -112,7 +122,7 @@ const FormPage = () => {
               <span className="ml-2">3x per week</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -129,9 +139,9 @@ const FormPage = () => {
 
         {/* Lifting Experience */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-white mb-2">Are you new to lifting?</label>
+          <label className="block text-sm font-medium  mb-2">Are you new to lifting?</label>
           <div className="flex items-center space-x-4">
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -140,10 +150,10 @@ const FormPage = () => {
                 checked={status === 'beginner'}
                 onChange={handleLiftingChange}
               />
-              <span className="ml-2 text-white">Yes (I'm a beginner)</span>
+              <span className="ml-2 ">Yes (I'm a beginner)</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -152,10 +162,10 @@ const FormPage = () => {
                 checked={status === 'intermediate'}
                 onChange={handleLiftingChange}
               />
-              <span className="ml-2 text-white">Not Really (I'm intermediate)</span>
+              <span className="ml-2 ">Not Really (I'm intermediate)</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-indigo-600"
@@ -164,16 +174,16 @@ const FormPage = () => {
                 checked={status === 'advanced'}
                 onChange={handleLiftingChange}
               />
-              <span className="ml-2 text-white">No (I'm advanced bro)</span>
+              <span className="ml-2 ">No (I'm advanced bro)</span>
             </label>
           </div>
         </div>
 
         {/* Fitness Goal */}
         <div className="mb-6">
-          <label className="block text-sm font-medium text-white mb-2">What is your main goal?</label>
+          <label className="block text-sm font-medium  mb-2">What is your main goal?</label>
           <div className="flex items-center space-x-4">
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -182,12 +192,12 @@ const FormPage = () => {
                 checked={goal === 'muscular_toned'}
                 onChange={handleGoalChange}
               />
-              <span className="ml-2 text-white">Look muscular & toned (Muscle size and visibility)</span>
+              <span className="ml-2 ">Look muscular & toned (Muscle size and visibility)</span>
             </label>
           </div>
 
           <div className="flex items-center space-x-4">
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex  items-center">
               <input
                 type="radio"
                 className="form-radio text-white"
@@ -196,13 +206,13 @@ const FormPage = () => {
                 checked={goal === 'stronger_faster'}
                 onChange={handleGoalChange}
               />
-              <span className="ml-2 text-white">Get stronger, faster(Lift more weight)</span>
+              <span className="ml-2">Get stronger, faster(Lift more weight)</span>
             </label>
             
           </div>
 
           <div className="flex items-center space-x-4">
-            <label className="inline-flex text-white items-center">
+            <label className="inline-flex items-center">
               <input
                 type="radio"
                 className="form-radio text-white"

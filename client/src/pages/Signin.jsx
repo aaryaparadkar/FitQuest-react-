@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import Google from './imgs/Google.png'
-import Fitquest from './imgs/Fitquest.jpeg'
+import { Link, useNavigate } from 'react-router-dom';
+import Google from '../imgs/Google.png';
+import Fitquest from '../imgs/Fitquest.jpeg';
 import axios from 'axios';
 import { useState } from 'react';
 
@@ -8,22 +8,23 @@ export default function Signin() {
 
   const [email, setEmail] = useState('');
   const [pwd, setPwd] = useState(''); 
+  const navigate = useNavigate();
 
   const handleSignin = (e) => {
     const credentials = {email, pwd};
 
-    axios.post('http://localhost:5000/auth/signup', credentials)
+    axios.post('http://localhost:5000/user/signup', credentials)
     .then(response => {
       console.log(response);
       setEmail('');
       setPwd('');
-      localStorage.setItem('username', response.data.username); // Accessing username from response.data
+      localStorage.setItem('username', response.data.username);
+      navigate('/form'); 
     })
     .catch(error => {
       console.log(error);
     });
   }
-
 
   return (
     <>

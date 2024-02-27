@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import John from '../imgs/john-arano-h4i9G-de7Po-unsplash.jpg'
+import Johnathon from '../imgs/jonathan-borba-VtCaDJ-WfOA-unsplash.jpg'
+import sam from '../imgs/sam-sabourin-PiFA6HIAfBA-unsplash.jpg'
 
-const images = ['/john-arano-h4i9G-de7Po-unsplash', '/jonathan-borba-VtCaDJ-WfOA-unsplash', '/sam-sabourin-PiFA6HIAfBA-unsplash']; // Replace with your image URLs
+const images = [John,Johnathon,sam]; // Replace with your image URLs
 
 const Banner = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -22,7 +25,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className="relative mt-5">
         <div className="w-full h-auto overflow-hidden">
           <div
             className="w-full h-auto transition-transform duration-500"
