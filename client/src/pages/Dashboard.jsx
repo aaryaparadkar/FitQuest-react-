@@ -55,6 +55,24 @@ import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import axios from 'axios';
+
+const data = {
+  gender: "male",
+  age: 21,
+  weight: 56,
+  height: 175,
+  goal: "Build muscle",
+  schedule: "4 days a week"
+};
+
+axios.post('http://localhost:5000/generateWorkoutPlan', data)
+  .then(response => {
+    console.log('Response:', response.data);
+  })
+  .catch(error => {
+    console.error('Error:', error);
+  });
 
 
 const Dashboard = () => {
@@ -64,7 +82,14 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('https://localhost:5000/generateWorkoutPlan');
+        const response = await axios.post('https://localhost:5000/generateWorkoutPlan', data)
+        .then(response => {
+          console.log('Response:', response.data);
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+
         const data = await response.json();
         setCaloriesBurnt(data.caloriesBurnt);
         setWorkoutPlan(data.workoutPlan);
@@ -79,6 +104,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Header />
         <div className='mb-8 mt-8 text-center text-5xl font-semibold'>
             Dashboard
         </div>
@@ -129,9 +155,8 @@ const Dashboard = () => {
           )}
         </div>
       </div>
+      <Footer />
     </div>
-    </div>
-  )
   );
 };
 
