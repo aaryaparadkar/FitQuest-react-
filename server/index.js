@@ -3,6 +3,7 @@ import mongoose from 'mongoose';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { userAuth } from './api/auth.js';
+import { Generate_Workout_Plan } from './api/Generate_Workout_Plan.js';
 
 const app = express();
 
@@ -18,6 +19,13 @@ mongoose.connect(db_url)
 .catch((err) => {
     console.log(`DB conection failed: ${err}`);
 });
+
+app.post('/', ( req, res ) => {
+    console.log('Hello world');
+    res.status(200).json({message:'Success'});
+})
+
+app.use('/generateWorkoutPlan', Generate_Workout_Plan);
 
 app.use("/auth",userAuth);
 
