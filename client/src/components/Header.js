@@ -1,13 +1,9 @@
 import { Fragment } from 'react'
 import { Disclosure, Menu, Transition } from '@headlessui/react'
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline'
-import logo from '../imgs/logo.jpeg'
 
 const navigation = [
-  { name: 'Dashboard', href: '#', current: true },
-  { name: 'Team', href: '#', current: false },
-  { name: 'Projects', href: '#', current: false },
-  { name: 'Calendar', href: '#', current: false },
+  { name: 'Dashboard', href: '/Dashboard', current: true },
 ]
 
 function classNames(...classes) {
@@ -33,13 +29,9 @@ export default function Example() {
                   )}
                 </Disclosure.Button>
               </div>
-              <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+              <div className="flex ml-[30px] items-center justify-center sm:items-stretch sm:justify-start">
                 <div className="flex flex-shrink-0 items-center">
-                  <img
-                    className="h-8 w-auto"
-                    src="../imgs/logo.jpeg"
-                    alt="Your Company"
-                  />
+                  
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
                   <div className="flex space-x-4">
@@ -56,6 +48,10 @@ export default function Example() {
                         {item.name}
                       </a>
                     ))}
+                    <div className="flex flex-shrink-0 items-center">
+                {/* FitQuest Company Name */}
+                <div className="text-white font-bold text-2xl ml-[350px] flex-grow">FitQuest</div>
+              </div>
                   </div>
                 </div>
               </div>

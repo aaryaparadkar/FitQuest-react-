@@ -5,6 +5,8 @@ const FormPage = () => {
   const [selectedFrequency, setSelectedFrequency] = useState('');
   const [isNewToLifting, setIsNewToLifting] = useState('');
   const [selectedGoal, setSelectedGoal] = useState('');
+  const [age, setAge] = useState(''); // Add age state
+  const [weight, setWeight] = useState(''); // Add weight state
 
   const handleGenderChange = (e) => {
     setSelectedGender(e.target.value);
@@ -22,6 +24,14 @@ const FormPage = () => {
     setSelectedGoal(e.target.value);
   };
 
+  const handleAgeChange = (e) => { // New function for age change
+    setAge(e.target.value);
+  };
+
+  const handleWeightChange = (e) => { // New function for weight change
+    setWeight(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
@@ -29,6 +39,8 @@ const FormPage = () => {
     console.log('Selected Frequency:', selectedFrequency);
     console.log('Is New to Lifting:', isNewToLifting);
     console.log('Selected Goal:', selectedGoal);
+    console.log('Age:', age);
+    console.log('Weight:', weight);
   };
 
   return (
@@ -63,6 +75,8 @@ const FormPage = () => {
               />
               <span className="ml-2 ">Female</span>
             </label>
+
+             
 
             <label className="inline-flex  items-center">
               <input
@@ -208,6 +222,29 @@ const FormPage = () => {
               <span className="ml-2">Lose Fat (Burn a lot of calories)</span>
             </label>
           </div>
+        </div>
+        {/* Age Input */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-2">Enter your age:</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="  Age"
+            value={age}
+            onChange={handleAgeChange}
+          />
+        </div>
+
+        {/* Weight Input */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-2">Enter your weight:</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="  Weight"
+            value={weight}
+            onChange={handleWeightChange}
+          />
         </div>
 
         {/* Submit Button */}

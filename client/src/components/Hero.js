@@ -25,7 +25,7 @@ const Banner = () => {
   }, []);
 
   return (
-    <div className="relative mt-5">
+    <div className="relative">
         <div className="w-full h-auto overflow-hidden">
           <div
             className="w-full h-auto transition-transform duration-500"
@@ -74,7 +74,23 @@ const Banner = () => {
             <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
           </svg>
         </button>
+      {/* Transparent div with slogan */}
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 mt-[-150px] text-center">
+        <div className="bg-black bg-opacity-50 p-4 rounded-md">
+          <h2 className="text-white text-5xl font-bold">Where Fitness Meets Gamification</h2>
+          <p className="text-gray-300 text-4xl">Your fitness journey just got more exciting!</p>
+        </div>
       </div>
+
+      <div className="absolute top-1/2 left-0 transform -translate-y-1/2 w-full flex justify-between px-4">
+        <button onClick={goToPreviousImage} className="p-2 rounded bg-white">
+          {/* ... (previous button SVG) */}
+        </button>
+        <button onClick={goToNextImage} className="p-2 rounded bg-white">
+          {/* ... (next button SVG) */}
+        </button>
+      </div>
+    </div>
     </div>
   );
 };
