@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
-import Google from './imgs/Google.png'
-import Fitquest from './imgs/Fitquest.jpeg'
+import Google from '../imgs/Google.png'
+import Fitquest from '../imgs/Fitquest.jpeg'
 
 export default function Signin() {
     return (
