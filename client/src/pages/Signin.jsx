@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import Google from './imgs/Google.png'
+import Fitquest from './imgs/Fitquest.jpeg'
 
 export default function Signin() {
     return (
@@ -15,7 +17,7 @@ export default function Signin() {
           <div className="sm:mx-auto sm:w-full sm:max-w-sm">
             <img
               className="mx-auto h-24 w-auto"
-              src="/public/Fitquest.jpeg"
+              src={Fitquest}
               alt="Fitquest"
             />
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
@@ -79,7 +81,7 @@ export default function Signin() {
             </p>
   
               <button className="flex w-full justify-center rounded-md bg-blue-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 mt-4">
-                <img src="./public/Google.png" alt="G" className="h-4 w-4 mx-1 my-1" /> Sign up using Google
+                <img src={Google} alt="G" className="h-4 w-4 mx-1 my-1" /> Sign up using Google
               </button>
   
             <hr className="my-5 bg-blue-800 w-full h-0.5" />
