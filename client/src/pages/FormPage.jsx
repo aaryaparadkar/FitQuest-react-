@@ -1,6 +1,4 @@
-// pages/form.js
 import React, { useState } from 'react';
-import '../src/index.css';
 
 const FormPage = () => {
   const [selectedGender, setSelectedGender] = useState('');
@@ -120,17 +118,6 @@ const FormPage = () => {
               <span className="ml-2">4x per week</span>
             </label>
 
-            <label className="inline-flex text-white items-center">
-              <input
-                type="radio"
-                className="form-radio text-white"
-                name="frequency"
-                value="6x per week"
-                checked={selectedFrequency === '6x per week'}
-                onChange={handleFrequencyChange}
-              />
-              <span className="ml-2 text-white">6x per week</span>
-            </label>
           </div>
         </div>
 
