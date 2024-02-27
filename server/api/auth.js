@@ -34,12 +34,12 @@ app.post("/signup", async (req, res) => {
 
 app.post('/login', async (req,res) => {
     try{
-        const {username, password} = req.body;
-        const user = await userModel.findOne({username});
+        const {email, password} = req.body;
+        const user = await userModel.findOne({email});
         if (user){
             const validPass = await bcrypt.compare(password,user.password);
             if (validPass){
-                return res.status(200).json({message:"Login successfull"});
+                return res.status(200).json({message:"Login successfull", username: user.username});
             }
             else{
                 return res.status(401).json({message:"Invalid Password"});

@@ -1,34 +1,40 @@
 import React, { useState } from 'react';
 
 const FormPage = () => {
-  const [selectedGender, setSelectedGender] = useState('');
-  const [selectedFrequency, setSelectedFrequency] = useState('');
-  const [isNewToLifting, setIsNewToLifting] = useState('');
-  const [selectedGoal, setSelectedGoal] = useState('');
+  // State variables and setter functions for form fields
+  const [gender, setGender] = useState('');
+  const [frequency, setFrequency] = useState('');
+  const [status, setStatus] = useState('');
+  const [goal, setGoal] = useState('');
 
+  // Event handler for gender selection change
   const handleGenderChange = (e) => {
-    setSelectedGender(e.target.value);
+    setGender(e.target.value);
   };
 
+  // Event handler for workout frequency selection change
   const handleFrequencyChange = (e) => {
-    setSelectedFrequency(e.target.value);
+    setFrequency(e.target.value);
   };
 
+  // Event handler for lifting experience selection change
   const handleLiftingChange = (e) => {
-    setIsNewToLifting(e.target.value);
+    setStatus(e.target.value);
   };
 
+  // Event handler for fitness goal selection change
   const handleGoalChange = (e) => {
-    setSelectedGoal(e.target.value);
+    setGoal(e.target.value);
   };
 
+  // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission logic here
-    console.log('Selected Gender:', selectedGender);
-    console.log('Selected Frequency:', selectedFrequency);
-    console.log('Is New to Lifting:', isNewToLifting);
-    console.log('Selected Goal:', selectedGoal);
+    console.log('Selected Gender:', gender);
+    console.log('Selected Frequency:', frequency);
+    console.log('Is New to Lifting:', status);
+    console.log('Selected Goal:', goal);
   };
 
   return (
@@ -46,7 +52,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="gender"
                 value="male"
-                checked={selectedGender === 'male'}
+                checked={gender === 'male'}
                 onChange={handleGenderChange}
               />
               <span className="ml-2">Male</span>
@@ -58,7 +64,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="gender"
                 value="female"
-                checked={selectedGender === 'female'}
+                checked={gender === 'female'}
                 onChange={handleGenderChange}
               />
               <span className="ml-2 text-white">Female</span>
@@ -70,7 +76,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="gender"
                 value="other"
-                checked={selectedGender === 'other'}
+                checked={gender === 'other'}
                 onChange={handleGenderChange}
               />
               <span className="ml-2 text-white">Other</span>
@@ -88,7 +94,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="frequency"
                 value="2x per week"
-                checked={selectedFrequency === '2x per week'}
+                checked={frequency === '2x per week'}
                 onChange={handleFrequencyChange}
               />
               <span className="ml-2 text-white">2x per week</span>
@@ -100,7 +106,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="frequency"
                 value="3x per week"
-                checked={selectedFrequency === '3x per week'}
+                checked={frequency === '3x per week'}
                 onChange={handleFrequencyChange}
               />
               <span className="ml-2">3x per week</span>
@@ -112,7 +118,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="frequency"
                 value="4x per week"
-                checked={selectedFrequency === '4x per week'}
+                checked={frequency === '4x per week'}
                 onChange={handleFrequencyChange}
               />
               <span className="ml-2">4x per week</span>
@@ -131,7 +137,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="lifting"
                 value="beginner"
-                checked={isNewToLifting === 'beginner'}
+                checked={status === 'beginner'}
                 onChange={handleLiftingChange}
               />
               <span className="ml-2 text-white">Yes (I'm a beginner)</span>
@@ -143,7 +149,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="lifting"
                 value="intermediate"
-                checked={isNewToLifting === 'intermediate'}
+                checked={status === 'intermediate'}
                 onChange={handleLiftingChange}
               />
               <span className="ml-2 text-white">Not Really (I'm intermediate)</span>
@@ -155,7 +161,7 @@ const FormPage = () => {
                 className="form-radio text-indigo-600"
                 name="lifting"
                 value="advanced"
-                checked={isNewToLifting === 'advanced'}
+                checked={status === 'advanced'}
                 onChange={handleLiftingChange}
               />
               <span className="ml-2 text-white">No (I'm advanced bro)</span>
@@ -173,7 +179,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="goal"
                 value="muscular_toned"
-                checked={selectedGoal === 'muscular_toned'}
+                checked={goal === 'muscular_toned'}
                 onChange={handleGoalChange}
               />
               <span className="ml-2 text-white">Look muscular & toned (Muscle size and visibility)</span>
@@ -187,7 +193,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="goal"
                 value="stronger_faster"
-                checked={selectedGoal === 'stronger_faster'}
+                checked={goal === 'stronger_faster'}
                 onChange={handleGoalChange}
               />
               <span className="ml-2 text-white">Get stronger, faster(Lift more weight)</span>
@@ -202,7 +208,7 @@ const FormPage = () => {
                 className="form-radio text-white"
                 name="goal"
                 value="lose_fat"
-                checked={selectedGoal === 'lose_fat'}
+                checked={goal === 'lose_fat'}
                 onChange={handleGoalChange}
               />
               <span className="ml-2">Lose Fat (Burn a lot of calories)</span>
