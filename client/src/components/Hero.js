@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const images = ['/john-arano-h4i9G-de7Po-unsplash', '/jonathan-borba-VtCaDJ-WfOA-unsplash', '/sam-sabourin-PiFA6HIAfBA-unsplash']; // Replace with your image URLs
+const images = ['../imgs/john-arano-h4i9G-de7Po-unsplash', '../imgs/jonathan-borba-VtCaDJ-WfOA-unsplash', '../imgs/sam-sabourin-PiFA6HIAfBA-unsplash']; // Replace with your image URLs
 
 const Banner = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
