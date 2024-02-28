@@ -6,10 +6,9 @@ import dotenv from 'dotenv';
 const app = express();
 dotenv.config();
 
-
 // Access your YouTube Data API key as an environment variable
 const YOUTUBE_API_KEY = process.env.YOUTUBE_API_KEY; // Replace with your actual API key
-
+  
 const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 // Function to search for videos on YouTube
@@ -131,8 +130,26 @@ app.post('/', async (req, res) => {
     const response = result && result.response ? result.response : { suggestedUserResponses: [] };
     const generatedText = response.text();
     const generatedObject = JSON.parse(generatedText);
-    // console.log("Generated workout plan:", generatedObject['workoutSuggestions'][0]['searchTermForYouTube']);
-    console.log("Generated workout plan:", generatedText);
+    console.log("Generated workout plan:", generatedObject['workoutSuggestions'][0]['searchTermForYouTube']);
+    // console.log("Generated workout plan:", generatedObject);
+
+    const getExercisesByDay = (workoutData) => {
+      const exercisesByDay = {};
+      workoutData.workoutSuggestions.forEach((day) => {
+        exercisesByDay[`Day ${day.Day}`] = day.exercises;
+      });
+      return exercisesByDay;
+    };
+    
+    // Call the function and store the result
+    const exercisesByDay = getExercisesByDay(generatedObject);
+    
+    // Log exercises for each day
+    for (const day in exercisesByDay) {
+      console.log(`${day}:`);
+      console.log(exercisesByDay[day]);
+      console.log();
+    }
 
     // Iterate through workout suggestions and search YouTube for each term
     generatedObject.workoutSuggestions.forEach(day => {
