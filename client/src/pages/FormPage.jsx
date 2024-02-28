@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const FormPage = () => {
   // State variables and setter functions for form fields
@@ -6,6 +8,10 @@ const FormPage = () => {
   const [frequency, setFrequency] = useState('');
   const [status, setStatus] = useState('');
   const [goal, setGoal] = useState('');
+  const [age, setAge] = useState(''); // Add age state
+  const [weight, setWeight] = useState(''); // Add weight state
+  const username = localStorage.getItem('username');
+  const navigate = useNavigate();
 
   // Event handler for gender selection change
   const handleGenderChange = (e) => {
@@ -27,11 +33,19 @@ const FormPage = () => {
     setGoal(e.target.value);
   };
 
+  const handleAgeChange = (e) => { // New function for age change
+    setAge(e.target.value);
+  };
+
+  const handleWeightChange = (e) => { // New function for weight change
+    setWeight(e.target.value);
+  };
+
   // Event handler for form submission
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const data = {username,gender,frequency,status,goal};
+    const data = {username,gender,frequency,status,goal,age,weight};
 
     axios.post('http://localhost:5000/user/profile', data)
     .then(response => {
@@ -40,11 +54,14 @@ const FormPage = () => {
       setFrequency('');
       setGoal('');
       setStatus('');
-      localStorage.setItem('username', response.data.username); 
+      setAge('');
+      setWeight('');
+      navigate('/dashboard');
     })
     .catch(error => {
       console.log(error);
     });
+
   };
 
   return (
@@ -79,6 +96,8 @@ const FormPage = () => {
               />
               <span className="ml-2 ">Female</span>
             </label>
+
+             
 
             <label className="inline-flex  items-center">
               <input
@@ -224,6 +243,29 @@ const FormPage = () => {
               <span className="ml-2">Lose Fat (Burn a lot of calories)</span>
             </label>
           </div>
+        </div>
+        {/* Age Input */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-2">Enter your age:</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="  Age"
+            value={age}
+            onChange={handleAgeChange}
+          />
+        </div>
+
+        {/* Weight Input */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium mb-2">Enter your weight:</label>
+          <input
+            type="text"
+            className="form-input"
+            placeholder="  Weight"
+            value={weight}
+            onChange={handleWeightChange}
+          />
         </div>
 
         {/* Submit Button */}

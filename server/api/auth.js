@@ -8,6 +8,7 @@ app.post("/signup", async (req, res) => {
     try {
         const credentials = req.body;
         const { email, password } = credentials;
+        console.log(credentials);
 
         const atIndex = email.indexOf("@");
         const username = atIndex !== -1 ? email.substring(0, atIndex) : email;
@@ -34,10 +35,11 @@ app.post("/signup", async (req, res) => {
 
 app.post('/login', async (req,res) => {
     try{
-        const {email, password} = req.body;
+        const {email, pwd} = req.body;
+        console.log(email, pwd);
         const user = await userModel.findOne({email});
         if (user){
-            const validPass = await bcrypt.compare(password,user.password);
+            const validPass = await bcrypt.compare(pwd,user.password);
             if (validPass){
                 return res.status(200).json({message:"Login successfull", username: user.username});
             }

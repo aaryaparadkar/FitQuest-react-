@@ -25,7 +25,7 @@ async function searchYouTube(searchTerm) {
       type: 'video',
       maxResults: 1,
     });
-
+    // return null;
     const videoId = response.data.items[0].id.videoId;
     const videoLink = `https://www.youtube.com/watch?v=${videoId}`;
     console.log(`Video link for "${searchTerm}": ${videoLink}`);
@@ -33,6 +33,7 @@ async function searchYouTube(searchTerm) {
     return videoLink;
   } catch (error) {
     console.error('Error searching YouTube:', error.message);
+    return
     throw new Error('Error searching YouTube');
   }
 }
@@ -158,17 +159,11 @@ app.post('/', async (req, res) => {
       });
     });
 
-    res.status(200).json({ workoutPlan: generatedText });
+    res.status(200).json({ workoutPlan: exercisesByDay });
   } catch (error) {
     console.error("Error generating modified workout plan:", error);
     res.status(500).json({ error: 'Error generating modified workout plan' });
   }
-});
-
-// Start the Express server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
 });
 
 export {app as Generate_Workout_Plan};
