@@ -46,13 +46,13 @@ app.post('/', async (req, res) => {
   const userInput = req.body;
 
   try {
-    const { name, age, weight, height, goal, schedule } = userInput;
+    const { gender, age, weight, height, goal, schedule } = userInput;
 
-     const prompt = `Hi ${name}, welcome to your personalized AI workout program! Your safety and well-being are paramount, so please consult with a doctor or certified fitness trainer before embarking on any new workout routine, especially if you have health concerns.
+     const prompt = `Hi ${gender}, welcome to your personalized AI workout program! Your safety and well-being are paramount, so please consult with a doctor or certified fitness trainer before embarking on any new workout routine, especially if you have health concerns.
 
      Based on the information you provided (age: ${age}, weight: ${weight}kg, height: ${height}cm, goal: ${goal}, schedule: ${schedule}), I'm here to guide you through potential workout options. While I can offer suggestions and approximate calorie burn estimates require on each day based on it workout sechudule, specific recommendations and assurances of safety or effectiveness are best obtained from a fitness professional.
      
-     **NOTE:** Give response in the given below example format only,Do not hard Code the estimate calorieBurnEstimate which is give in example calculate by yourself rougly based on your assign the exercise on that day this rule should need to be stritly followed.
+     **NOTE:** Give response in the given below example format only,Do not hard Code the estimate calorieBurnEstimate which is give in example calculate by yourself rougly based on your assign the exercise on that day this rule should need to be stritly followed,give responde based on gender too.
      
      This is the sample response format, give a response in this format only, based on user-provided data:
      
@@ -148,10 +148,6 @@ app.post('/', async (req, res) => {
   }
 });
 
-// Start the Express server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+
 
 export {app as Generate_Workout_Plan};
