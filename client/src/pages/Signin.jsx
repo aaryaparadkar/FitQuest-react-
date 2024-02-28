@@ -11,6 +11,7 @@ export default function Signin() {
   const navigate = useNavigate();
 
   const handleSignin = (e) => {
+    e.preventDefault();
     const credentials = {email, pwd};
 
     axios.post('http://localhost:5000/user/login', credentials)
@@ -50,7 +51,6 @@ export default function Signin() {
                   id="email"
                   name="email"
                   type="email"
-                  autoComplete="email"
                   required
                   onChange={(e)=> setEmail(e.target.value)}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -63,11 +63,7 @@ export default function Signin() {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
-                <div className="text-sm">
-                  <Link href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                    Forgot password?
-                  </Link>
-                </div>
+
               </div>
               <div className="mt-2">
                 <input
@@ -106,4 +102,3 @@ export default function Signin() {
       </div>
   )
   }
-  

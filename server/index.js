@@ -5,13 +5,13 @@ import dotenv from 'dotenv';
 import { userAuth } from './api/auth.js';
 import { Generate_Workout_Plan } from './api/Generate_Workout_Plan.js';
 import { googlefit } from './api/googlefit.js';
-import request from 'request';
 import urlParse from 'url-parse';
 import queryParse from 'query-string';
 import axios from 'axios';
 import { google } from 'googleapis';
 
 import { userProf } from './api/prof.js';
+import { mailer } from './api/reminder.js';
 
 const app = express();
 
@@ -37,6 +37,7 @@ app.use('/generateWorkoutPlan', Generate_Workout_Plan);
 app.use('/googlefit', googlefit);
 
 app.use("/user",[userAuth, userProf]);
+app.use("/sendmail",mailer);
 
 app.get("/dashboard", async (req, res) => {
     try {

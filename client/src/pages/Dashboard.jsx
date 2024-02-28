@@ -66,6 +66,20 @@ const Dashboard = () => {
   const [caloriesBurnt, setCaloriesBurnt] = useState(0);
   const [workoutPlan, setWorkoutPlan] = useState({});
   const [workoutdata, setWorkoutData] = useState('');
+  const [excercise, setExcercise] = useState('');
+
+  const mail_sender = () => {
+    const email = username + '@gmail.com';
+    axios.post('http://localhost:5000/sendmail', {email, excercise})
+  .then(response => {
+    console.log(email,excercise);
+
+      console.log('Mail sent:', response.data);
+  })
+  .catch(error => {
+      console.error('Error sending mail:', error);
+  });
+  }
 
   useEffect(() => {
 
@@ -76,7 +90,6 @@ const Dashboard = () => {
         gender: response.data.gender,
         age: response.data.age,
         weight: response.data.weight,
-        height: response.data.height,
         goal: response.data.goal,
         schedule: response.data.schedule
       }
@@ -91,11 +104,17 @@ const Dashboard = () => {
         const response = await axios.post('http://localhost:5000/generateWorkoutPlan', jsondata)
         .then(response => {
           console.log('Response:', response.data.workoutPlan);
+          const exc = response.data.workoutPlan;
           setWorkoutData(response.data.workoutPlan);
-          // console.log(workoutdata);
-          for (const day in workoutdata){
-            console.log(day,':', workoutdata[day]);
-          }
+          Object.keys(exc).forEach(day => {
+            console.log(day); // Print the day
+            exc[day].forEach(exercise => {
+              console.log(exercise); // Print each exercise for the day
+              // Now you can perform any further operations with the exercises
+              setExcercise(excercise);
+            });
+          });
+          mail_sender();
         })
         .catch(error => {
           console.error('Error:', error);
